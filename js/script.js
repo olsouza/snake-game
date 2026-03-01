@@ -35,8 +35,8 @@ const randomColor = () => {
 };
 
 const food = {
-    x: randomPosition(0, 570),
-    y: randomPosition(0, 570),
+    x: randomPosition(),
+    y: randomPosition(),
     color: randomColor()
 };
 
@@ -110,7 +110,7 @@ const drawGrid = () => {
 const checkEat = () => {
     const head = snake[snake.length - 1];
 
-    if (head.x === food.x & head.y === food.y) {
+    if (head.x === food.x && head.y === food.y) {
         incrementsScore();
         snake.push(head);
         audio.play();
@@ -125,7 +125,7 @@ const checkEat = () => {
 
         food.x = x;
         food.y = y;
-        food.color = randomColor;
+        food.color = randomColor();
     }
 };
 
