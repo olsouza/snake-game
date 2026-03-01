@@ -89,42 +89,6 @@ const moveSnake = () => {
     snake.shift();
 };
 
-let startX = 0;
-let startY = 0;
-const minSwipeDistance = 30;
-
-document.addEventListener("pointerdown", function(e) {
-  startX = e.clientX;
-  startY = e.clientY;
-});
-
-document.addEventListener("pointerup", function(e) {
-  let diffX = e.clientX - startX;
-  let diffY = e.clientY - startY;
-
-  if (Math.abs(diffX) < minSwipeDistance && Math.abs(diffY) < minSwipeDistance) {
-    return;
-  }
-
-  if (Math.abs(diffX) > Math.abs(diffY)) {
-
-    if (diffX > 0) {
-      snake.push({ x: head.x + size, y: head.y });
-    } else {
-      snake.push({ x: head.x - size, y: head.y });
-    }
-
-  } else {
-    if (diffY > 0) {
-      snake.push({ x: head.x, y: head.y + size });
-    } else {
-      snake.push({ x: head.x, y: head.y - size });
-    }
-  }
-
-  snake.shift();
-});
-
 const drawGrid = () => {
     ctx.lineWidth = 1;
     ctx.strokeStyle = '#191919';
@@ -224,7 +188,39 @@ document.addEventListener("keydown", ({ key }) => {
     if(key === 'ArrowUp' && direction !== 'down') {
         direction = "up";
     }
-})
+});
+
+let startX = 0;
+let startY = 0;
+const minSwipeDistance = 30;
+
+document.addEventListener("pointerdown", function(e) {
+  startX = e.clientX;
+  startY = e.clientY;
+});
+
+document.addEventListener("pointerup", function(e) {
+  let diffX = e.clientX - startX;
+  let diffY = e.clientY - startY;
+
+  if (Math.abs(diffX) < minSwipeDistance && Math.abs(diffY) < minSwipeDistance) {
+    return;
+  }
+
+  if (Math.abs(diffX) > Math.abs(diffY)) {
+    if (diffX > 0) {
+      direction = "right";
+    } else {
+      direction = "left";
+    }
+  } else {
+    if (diffY > 0) {
+      direction = "down";
+    } else {
+      direction = "up";
+    }
+  }
+});
 
 buttonPlay.addEventListener('click', () => {
     score.innerText = '00';
