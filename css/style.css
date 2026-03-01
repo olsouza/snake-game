@@ -15,11 +15,13 @@ body {
     justify-content: center;
     flex-direction: column;
     color: white;
+    touch-action: none;
 }
 
 canvas {
     background-color: #111;
     width: 500px;
+    height: 500px;
 }
 
 .score {
@@ -68,4 +70,10 @@ canvas {
     justify-content: center;
     gap: 5px;
     cursor: pointer;
+}
+
+@media (max-width: 500px) {
+    canvas {
+        width: 100%;
+    }
 }
