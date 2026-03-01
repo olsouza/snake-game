@@ -208,13 +208,13 @@ document.addEventListener("pointerup", function(e) {
   }
 
   if (Math.abs(diffX) > Math.abs(diffY)) {
-    if (diffX > 0) {
+    if (diffX > 0 && direction !== left) {
       direction = "right";
     } else {
       direction = "left";
     }
   } else {
-    if (diffY > 0) {
+    if (diffY > 0 && direction !== up) {
       direction = "down";
     } else {
       direction = "up";
