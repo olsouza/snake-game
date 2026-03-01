@@ -194,6 +194,13 @@ let startX = 0;
 let startY = 0;
 const minSwipeDistance = 30;
 
+const opposite = {
+  right: "left",
+  left: "right",
+  up: "down",
+  down: "up"
+};
+
 document.addEventListener("pointerdown", function(e) {
   startX = e.clientX;
   startY = e.clientY;
@@ -207,18 +214,16 @@ document.addEventListener("pointerup", function(e) {
     return;
   }
 
+  let newDirection;
+
   if (Math.abs(diffX) > Math.abs(diffY)) {
-    if (diffX > 0) {
-      direction = "right";
-    } else {
-      direction = "left";
-    }
+    newDirection = diffX > 0 ? "right" : "left";
   } else {
-    if (diffY > 0) {
-      direction = "down";
-    } else {
-      direction = "up";
-    }
+    newDirection = diffY > 0 ? "down" : "up";
+  }
+
+  if (newDirection !== opposite[direction]) {
+    direction = newDirection;
   }
 });
 
